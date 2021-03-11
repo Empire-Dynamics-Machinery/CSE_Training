@@ -1,0 +1,26 @@
+#Transformation Debugging
+#210311 Empire Dyanmics Machinery, LLC.
+
+#4x4 HTM components:
+getVectorX(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 0))
+getVectorY(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 0))
+getVectorZ(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 0))
+getVectorX(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 1))
+getVectorY(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 1))
+getVectorZ(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 1))
+getVectorX(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 2))
+getVectorY(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 2))
+getVectorZ(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 2))
+getVectorX(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 3))/25.4
+getVectorY(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 3))/25.4
+getVectorZ(getMatrixRow(getTrafoMatrix("ROTATIONAL"), 3))/25.4
+
+#Translational components of trafo:
+getVectorX(getMatrixTranslation(getTrafoMatrix("ROTATIONAL")))/25.4
+getVectorY(getMatrixTranslation(getTrafoMatrix("ROTATIONAL")))/25.4
+getVectorZ(getMatrixTranslation(getTrafoMatrix("ROTATIONAL")))/25.4
+
+#Rotational components of trafo:
+getDegree(getVectorX(getMatrixRotation(getTrafoMatrix("ROTATIONAL"))))
+getDegree(getVectorY(getMatrixRotation(getTrafoMatrix("ROTATIONAL"))))
+getDegree(getVectorZ(getMatrixRotation(getTrafoMatrix("ROTATIONAL"))))

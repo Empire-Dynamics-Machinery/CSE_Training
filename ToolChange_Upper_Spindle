@@ -1,0 +1,55 @@
+﻿G0 G90 G49 G80
+
+(Set the tool change position values in metric)
+#100001=725 (X1)
+#100002=0 (Y1)
+#100003=-50 (Z1)
+#100004=600 (back-off distance Z1)
+
+
+IF[71EQ#4006] GOTO 10
+IF[21EQ#4006] GOTO 10
+   #100001=#100001/25.4
+   #100002=#100002/25.4
+   #100003=#100003/25.4
+   #100004=#100004/25.4
+N10
+
+IF[0EQ#3400] GOTO 20
+#100001=#100001*2
+N20
+G0 G53 X[#100001]
+G0 G53 Y[#100002]
+M785
+G0 B-90
+G0 G53 Z[#100003]
+
+##LANGUAGE AC
+    INT nToolID;
+    nToolID = getVariable("#4120");
+    STRING strCarrier;
+    strCarrier = "TS";
+    
+    IF (nToolID>0);
+        generateTool(getToolNameByNumber(nToolID), strCarrier);
+    ENDIF;
+    
+    IF(exist(getCurrentTool(strCarrier)));
+        visibility (getCurrentTool(strCarrier), OFF);
+        collision (OFF, getCurrentTool(strCarrier));
+        release (getCurrentTool(strCarrier));
+    ENDIF;
+    
+    IF(exist(getNextTool(strCarrier)));
+        grasp(getNextTool(strCarrier),getJunction("POCKET_TS","S"));
+        visibility(getNextTool(strCarrier), ON);
+        collision (ON, getNextTool(strCarrier));
+        activateNextTool(strCarrier);
+    ENDIF;
+
+##LANGUAGE NATIVE
+
+G0 G53 Z[#100003+#100004]
+G0 G53 Y0.0
+
+M99

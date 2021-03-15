@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Metacode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Program Files (x86)\Tecnomatix\MachineConfigurator\resource\mc_metacode.xsd">
+  <Name>G269</Name>
+  <Execute>
+    <Command>
+      <Name>ActivateTransformation</Name>
+      <Param>"ROTATIONAL"</Param>
+      <Param>FALSE</Param>
+      <Param>TRUE</Param>
+    </Command>
+    <Command>
+      <Name>ResetTransformation</Name>
+      <Param>"ROTATIONAL"</Param>
+    </Command>
+  </Execute>
+</Metacode>

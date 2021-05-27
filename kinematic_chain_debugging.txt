@@ -1,0 +1,60 @@
+#Kinematic Chain Debugging
+#210526 Empire Dyanmics Machinery, LLC.
+
+#Return kinematic chain axes
+getKinematicChainAxis(GV_strSwivelingChainName,"xaxis")
+getKinematicChainAxis(GV_strSwivelingChainName,"yaxis")
+getKinematicChainAxis(GV_strSwivelingChainName,"zaxis")
+getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxisaxis")
+getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxisaxis")
+
+#Query all axes between part end and tool end in active kinematic chain (NX12+ only!)
+getListElement(getKinematicChainAxisList(GV_strSwivelingChainName),<Index>)
+... replace <Index> with 0,1,2 ... etc
+... use getSize(getKinematicChainAxisList(GV_strSwivelingChainName)) to determine number of elements
+
+#To validate the kinematic chain configuration, or make metacode universally applicable to multiple kinematic types:
+getKinematicChainType(GV_strSwivelingChainName)
+
+#Query name of kinematic chain in active transformation (if any)
+getKinematicTransformation()
+
+#Get part rotary axis pivot point for active kinematic chain in machine coordinate system - X, Y, and Z coordinates (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),3))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),3))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),3))
+
+#Get tool rotary axis pivot point for active kinematic chain in machine coordinate system - X, Y, and Z coordinates (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),3))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),3))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),3))
+
+#Get part rotary axis direction vector for active kinematic chain - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),2))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),2))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"partrotaryaxis")),2))
+
+#Get tool rotary axis direction vector for active kinematic chain - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),2))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),2))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"axis",getKinematicChainAxis(GV_strSwivelingChainName,"toolrotaryaxis")),2))
+
+#Get the tool mount junction Z axis vector for active kinematic chain in machine coordinates - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"tool"),1))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"tool"),1))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"tool"),1))
+
+#Get the part mount junction X axis vector for active kinematic chain in machine coordinates - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),0))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),0))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),0))
+
+#Get the part mount junction Y axis vector for active kinematic chain in machine coordinates - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),1))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),1))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),1))
+
+#Get the part mount junction Z axis vector for active kinematic chain in machine coordinates - X, Y, Z components (NX12+ only!)
+getVectorX(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),2))
+getVectorY(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),2))
+getVectorZ(getMatrixRow(getKinematicChainPos(GV_strSwivelingChainName,createCoordinate(),FALSE,"part"),2))

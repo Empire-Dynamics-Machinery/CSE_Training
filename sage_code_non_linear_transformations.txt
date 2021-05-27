@@ -1,0 +1,37 @@
+#-----------------------------------------------------------------------------
+#calcs for piece-to-machine
+S,L,Q,Z,XW,YW,ZW,XM,YM,ZM = var('S,L,Q,Z,XW,YW,ZW,XM,YM,ZM')
+
+#MKS_pos = vector([XM,YM,ZM,1])
+WKS_pos = vector([XW,YW,ZW,1])
+
+#translation by tool offset in Machine coordinates
+offset_LQZ = vector([Z,Q,L,1])
+
+#rotation about Z axis by S angle
+M1 = Matrix([[cos(S),-sin(S),0,0],[sin(S),cos(S),0,0],[0,0,1,0],[0,0,0,1]])
+
+MKS_pos = M1*offset_LQZ+WKS_pos
+#WKS_pos = MKS_pos-M1*offset_LQZ
+print(MKS_pos)
+#print(WKS_pos)
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+#calcs for machine-to-piece
+S,L,Q,Z,XW,YW,ZW,XM,YM,ZM = var('S,L,Q,Z,XW,YW,ZW,XM,YM,ZM')
+
+MKS_pos = vector([XM,YM,ZM,1])
+#WKS_pos = vector([XW,YW,ZW,1])
+
+#translation by tool offset in Machine coordinates
+offset_LQZ = vector([Z,Q,L,1])
+
+#rotation about Z axis by S angle
+M1 = Matrix([[cos(S),-sin(S),0,0],[sin(S),cos(S),0,0],[0,0,1,0],[0,0,0,1]])
+
+#MKS_pos = M1*offset_LQZ+WKS_pos
+WKS_pos = MKS_pos-M1*offset_LQZ
+#print(MKS_pos)
+print(WKS_pos)
+#-----------------------------------------------------------------------------
